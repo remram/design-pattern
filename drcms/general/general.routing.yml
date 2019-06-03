@@ -1,7 +1,0 @@
-arc.admin.general:
-  path: '/admin/general'
-  defaults:
-    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
-    _title: 'General'
-  requirements:
-    _permission: 'administer display modes'

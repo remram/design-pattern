@@ -1,5 +1,0 @@
-name: General
-description: Module for general and common stuff
-core: 8.x
-package: company
-type: module

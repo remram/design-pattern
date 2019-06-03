@@ -1,7 +1,0 @@
-my_entity.settings:
-  type: mapping
-  label: 'Entity Redirect per entity settings'
-  mapping:
-    arc_entity_redirect:
-      type: boolean
-      label: 'Whether to enable/disable forwarding to edit page after saving a content.'
