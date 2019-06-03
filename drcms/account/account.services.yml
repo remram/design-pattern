@@ -1,0 +1,4 @@
+services:
+  arc.account.my_entity_entity_service:
+    class: Drupal\account\Service\MyEntityEntityService
+    arguments: ['@arc.general.arc_entity_service']

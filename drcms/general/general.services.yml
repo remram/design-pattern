@@ -1,0 +1,24 @@
+services:
+  arc.general.node_service:
+    class: Drupal\general\Service\NodeService
+  arc.general.sequences_service:
+    class: Drupal\general\Service\SequencesService
+    arguments: ['@database']
+  arc.general.translation_service:
+    class: Drupal\general\Service\TranslationService
+    arguments: ['@current_user', '@language_manager', '@content_translation.manager', '@entity.form_builder', '@entity_type.manager']
+  arc.general.view_service:
+    class: Drupal\general\Service\ViewService
+    arguments: ['@renderer', '@entity.form_builder', '@entity_type.manager', '@arc.group.navigation_service']
+  arc.general.form_service:
+    class: Drupal\general\Service\FormService
+    arguments: ['@entity_type.manager', '@request_stack']
+  arc.general.thumbnail_service:
+    class: Drupal\general\Service\ThumbnailService
+    arguments: ['@entity_type.manager']
+  arc.general.modal_service:
+    class: Drupal\general\Service\ModalService
+    arguments: ['@entity_type.manager', '@arc.general.thumbnail_service']
+  arc.general.arc_entity_service:
+    class: Drupal\general\Service\ArcEntityService
+    arguments: ['@entity_type.manager']

@@ -1,0 +1,50 @@
+# MyEntity
+entity.my_entity.add_form:
+  route_name: entity.my_entity.add_form
+  title: 'Add MyEntity'
+  appears_on:
+    - entity.my_entity.collection
+entity.my_entity.address:
+  route_name: entity.my_entity.address.custom_add_form
+  title: 'Add Address'
+  class: Drupal\general\Plugin\Menu\LocalAction\LocalActionRedirect
+  appears_on:
+    - entity.my_entity.address
+entity.my_entity.pdf.add:
+  route_name: entity.my_entity.pdf.add
+  title: 'Add PDF'
+  class: Drupal\general\Plugin\Menu\LocalAction\LocalActionRedirect
+  appears_on:
+    - entity.my_entity.pdf
+entity.my_entity.video.add:
+  route_name: entity.my_entity.video.add
+  title: 'Add Video'
+  class: Drupal\general\Plugin\Menu\LocalAction\LocalActionRedirect
+  appears_on:
+    - entity.my_entity.video
+entity.my_entity.contents.add:
+  route_name: entity.my_entity.contents.add
+  title: 'Add Profile'
+  class: Drupal\general\Plugin\Menu\LocalAction\LocalActionRedirect
+  appears_on:
+    - entity.my_entity.contents
+
+entity.my_entity.filter.add:
+  route_name: entity.my_entity.filter.add
+  title: 'Add filter'
+  class: Drupal\general\Plugin\Menu\LocalAction\LocalActionRedirect
+  appears_on:
+    - entity.my_entity.filters
+
+entity.my_entity.object.product.add:
+  route_name: entity.my_entity.object.product.add
+  title: 'Add product'
+  class: Drupal\general\Plugin\Menu\LocalAction\LocalActionRedirect
+  appears_on:
+    - entity.my_entity.object.product
+entity.my_entity.object.product.order_by_name:
+  route_name: entity.my_entity.object.product.order_by_name
+  title: 'Order by name'
+  class: Drupal\general\Plugin\Menu\LocalAction\LocalActionRedirect
+  appears_on:
+    - entity.my_entity.object.product

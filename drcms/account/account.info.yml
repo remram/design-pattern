@@ -1,0 +1,7 @@
+name: Account
+type: module
+description: Module for account related stuff
+core: 8.x
+package: company
+dependencies:
+  - general

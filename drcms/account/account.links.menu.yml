@@ -1,0 +1,44 @@
+
+# Accounts general menu definition
+arc.admin.accounts:
+  title: 'Accounts'
+  description: 'Groups all account types and settings'
+  route_name: arc.admin.accounts
+  parent: system.admin
+  weight: -9
+
+arc.admin_structure.accounts:
+  title: 'Account settings'
+  description: 'List all Accounts entities'
+  route_name: arc.admin_structure.accounts
+  parent: system.admin_structure
+  weight: -10
+
+# Settings folder under accounts item
+arc.admin_accounts.settings:
+  title: 'Settings'
+  description: 'Manage navigation and filters for all account types'
+  route_name: arc.admin_accounts.settings
+  parent: arc.admin.accounts
+  weight: 200
+
+arc.admin_structure.accounts_settings:
+  title: 'Other settings'
+  description: 'List all other entities related to accounts'
+  route_name: arc.admin_structure.accounts_other_settings
+  parent: arc.admin_structure.accounts
+  weight: 100
+
+# MyEntity menu items definition
+entity.my_entity.collection:
+  title: 'MyEntitys'
+  route_name: entity.my_entity.collection
+  description: 'List all my_entitys. Manage them, edit, remove or add a new one.'
+  parent: arc.admin.accounts
+  weight: 100
+
+my_entity.admin.structure.settings:
+  title: MyEntity
+  description: 'Configure MyEntity entities'
+  route_name: my_entity.settings
+  parent: arc.admin_structure.accounts

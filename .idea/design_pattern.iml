@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/observer/news_paper/src" isTestSource="false" packagePrefix="ObserverPattern\" />
+      <sourceFolder url="file://$MODULE_DIR$/decorator/menu/src" isTestSource="false" packagePrefix="DecoratorPattern\menu\" />
+      <sourceFolder url="file://$MODULE_DIR$/observer/news_paper_spl/src" isTestSource="false" packagePrefix="SPLObserverPattern\" />
+      <sourceFolder url="file://$MODULE_DIR$/strategy/walk/src" isTestSource="false" packagePrefix="StrategyPattern\" />
+      <excludeFolder url="file://$MODULE_DIR$/strategy/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

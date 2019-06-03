@@ -1,0 +1,6 @@
+name: 'company Entity Redirect'
+type: module
+description: 'Redirect after entity creation or edit - per content or user.'
+# core: 8.x
+package: company
+core: '8.x'

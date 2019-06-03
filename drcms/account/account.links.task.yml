@@ -1,0 +1,86 @@
+# MyEntity routing definition
+my_entity.settings_tab:
+  route_name: my_entity.settings
+  title: 'Settings'
+  base_route: my_entity.settings
+
+entity.my_entity.canonical:
+  route_name: entity.my_entity.canonical
+  base_route: entity.my_entity.canonical
+  title: 'View'
+
+entity.my_entity.demo:
+  route_name: demo.my_entity.redirection
+  base_route: entity.my_entity.canonical
+  title: 'Demo'
+
+entity.my_entity.edit_form:
+  route_name: entity.my_entity.edit_form
+  base_route: entity.my_entity.canonical
+  title: 'Edit'
+
+entity.my_entity.translation.en:
+  route_name: entity.my_entity.edit_form
+  parent_id: entity.my_entity.edit_form
+  title: 'EN'
+
+entity.my_entity.translation.de:
+  route_name: entity.my_entity.translation
+  parent_id: entity.my_entity.edit_form
+  title: 'DE'
+  route_parameters:
+    target_language:  'de'
+
+entity.my_entity.translation.it:
+  route_name: entity.my_entity.translation
+  parent_id: entity.my_entity.edit_form
+  title: 'IT'
+  route_parameters:
+    target_language:  'it'
+
+entity.my_entity.translation.es:
+  route_name: entity.my_entity.translation
+  parent_id: entity.my_entity.edit_form
+  title: 'ES'
+  route_parameters:
+    target_language:  'es'
+
+entity.my_entity.translation.fr:
+  route_name: entity.my_entity.translation
+  parent_id: entity.my_entity.edit_form
+  title: 'FR'
+  route_parameters:
+    target_language:  'fr'
+
+entity.my_entity.translation.nl:
+  route_name: entity.my_entity.translation
+  parent_id: entity.my_entity.edit_form
+  title: 'NL'
+  route_parameters:
+    target_language:  'nl'
+
+entity.my_entity.translation.da:
+  route_name: entity.my_entity.translation
+  parent_id: entity.my_entity.edit_form
+  title: 'DA'
+  route_parameters:
+    target_language:  'da'
+
+entity.my_entity.translation.sv:
+  route_name: entity.my_entity.translation
+  parent_id: entity.my_entity.edit_form
+  title: 'SV'
+  route_parameters:
+    target_language:  'sv'
+
+entity.my_entity.translation.nb:
+  route_name: entity.my_entity.translation
+  parent_id: entity.my_entity.edit_form
+  title: 'NB'
+  route_parameters:
+    target_language:  'nb'
+
+entity.my_entity.navigation:
+  route_name: entity.my_entity.groups
+  base_route: entity.my_entity.canonical
+  title: 'Navigation'

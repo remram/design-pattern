@@ -1,0 +1,118 @@
+<?php
+
+ use  \Drupal\Core\Url;
+ use Drupal\general\Helper\MainHelper;
+
+/**
+ * Custom function to delete entity type definition.
+ *
+ * usage with drush:
+ *  $ ../vendor/bin/drush php-eval "deleteEntityType('content');"
+ *
+ * @see https://drupal.stackexchange.com/questions/187168/remove-entity-type-without-module-uninstall
+ * @see https://drupal.stackexchange.com/questions/164612/how-do-i-remove-a-configuration-object-from-the-active-configuration
+ *
+ * @param $entityType
+ */
+function deleteEntityType($entityType) {
+  $entity_update_manager = \Drupal::entityDefinitionUpdateManager();
+  $entity_type = $entity_update_manager->getEntityType($entityType);
+  $entity_update_manager->uninstallEntityType($entity_type);
+}
+
+/**
+ * Custom function to delete entities.
+ *
+ * usage with drush:
+ *  $ ../vendor/bin/drush php-eval "deleteEntities('entity_type_name', [1123401, 1123412]);"
+ *
+ * @param $entityType
+ * @param array $entityIds
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ */
+function deleteEntities($entityType, array $entityIds) {
+  // delete all entities at once. WARNING: it loads all entities in memory and
+  // then deletes them, which means its more memory intensive.
+  //entity_delete_multiple($entityType, $entityIds);
+
+  // delete entities one by one.
+  $storage = \Drupal::entityTypeManager()->getStorage($entityType);
+  foreach ($entityIds as $id) {
+    $entity = $storage->load($id);
+    if ($entity) {
+      $entity->delete();
+      echo "deleted {$id} from {$entityType} entity type\n";
+      continue;
+    }
+    echo "Unable to load {$id} from {$entityType} entity type\n\n";
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function general_theme() {
+  return [
+    'groups' => [
+      'template' => 'groups',
+      'render element' => 'children',
+      'variables' => ['data' => []],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function general_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Disable browser HTML5 validation
+  $form['#attributes']['novalidate'] = 'novalidate';
+
+  $entityTypes = \Drupal\Core\Site\Settings::get('arc.custom.entity');
+
+  foreach ($entityTypes as $entityName => $entityModule) {
+    if($entityName .'_form' === $form_id || $entityName .'_edit_form' === $form_id || $entityName . '_add_form' === $form_id || $entityName . '_filters_form' === $form_id){
+
+      $form['actions']['cancel'] = array(
+       '#type' => 'button',
+       '#value' => t('Cancel'),
+       '#attributes' => array('id' => 'arc-cancel-button'),
+       '#weight' => 5
+     );
+    }
+  }
+}
+
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function general_entity_operation_alter(array &$operations, \Drupal\Core\Entity\EntityInterface $entity) {
+
+  // Remove the translation button form the operations links of each entity list
+  if(isset($operations['translate'])) {
+    unset($operations['translate']);
+  }
+
+  $entityType = $entity->getEntityTypeId();
+  if ($entityType === MainHelper::MEDIA) {
+    $bundle = $entity->bundle();
+
+    switch ($bundle) {
+      case MainHelper::PRODUCT_GALLERY:
+      case MainHelper::FAMILY_GALLERY:
+      case MainHelper::ANTIQUE_GALLERY:
+      case MainHelper::ACCOUNT_PDF:
+      case MainHelper::FAMILY_CAD:
+      case MainHelper::ACCOUNT_VIDEO:
+        $operations['delete-entity'] = [
+          'title' => t('Remove'),
+          'weight' => 15,
+          'url' => Url::fromRoute('entity.arc_media.delete_entity', [$entityType => $entity->id()]),
+        ];
+        break;
+    }
+  }
+
+}
